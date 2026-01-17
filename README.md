@@ -36,4 +36,72 @@ Cette approche hybride permet de :
 ---
 
 ## 🏗️ Architecture Globale
+![Architecture du Chatbot](assets/architecture.png)
+
+
+
+---
+
+## 📄 Pipeline d’Indexation des Documents
+
+1. Upload du fichier par l’utilisateur
+2. Détection du type de fichier (PDF / DOCX / PPT)
+3. Extraction du texte brut
+4. Découpage en chunks  
+   - Taille : **1000 caractères**
+   - Overlap : **200 caractères**
+5. Génération des embeddings avec **Ollama**
+6. Stockage dans **ChromaDB**
+7. Indexation et sauvegarde
+
+---
+
+## ❓ Pipeline Question / Réponse (RAG)
+
+1. L’utilisateur pose une question
+2. Détection des questions simples (smalltalk)
+3. Recherche sémantique dans ChromaDB
+4. Filtrage par score de pertinence
+5. Construction du contexte (Top-K chunks)
+6. Génération de la réponse par DeepSeek R1
+7. Retour de la réponse en streaming
+
+---
+
+## 🧰 Technologies Utilisées
+
+### Backend
+- **FastAPI** (Python)
+- WebSocket (chat temps réel)
+
+### Frontend
+- HTML
+- CSS
+- JavaScript
+
+### Intelligence Artificielle
+- **DeepSeek R1** (LLM)
+- **Ollama** (embeddings)
+- **ChromaDB** (base vectorielle)
+- RAG (Retrieval-Augmented Generation)
+
+### Données
+- Base de données relationnelle (utilisateurs, conversations)
+- Base vectorielle (documents indexés)
+
+---
+
+## 🚀 Lancer le Projet
+
+```bash
+# Créer un environnement virtuel
+python -m venv venv
+source venv/bin/activate  # Windows : venv\Scripts\activate
+
+# Installer les dépendances
+pip install -r requirements.txt
+
+# Lancer le backend
+uvicorn main:app --reload
+
 
