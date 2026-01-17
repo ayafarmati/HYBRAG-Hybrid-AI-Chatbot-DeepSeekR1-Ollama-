@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Bot</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- AUTH -->
+ <div id="auth-screen" class="auth">
+    <div class="auth-card">
+      <div class="auth-top">
+        <img class="auth-logo" src="ensa_logo.png" alt="ENSA" />
+        <div>
+          <div class="auth-title">ENSA Berrechid</div>
+          <div class="auth-sub">L'espace IA dédié aux futurs ingénieurs.</div>
+        </div>
+      </div>
+
+      <h3 class="auth-h1" id="auth-title">Connexion</h3>
+
+      <div id="auth-status" class="status"></div>
+
+      <form id="login-form" class="auth-form">
+        <label class="label">Email</label>
+        <input id="email" class="input" type="email" placeholder="nom.ensa@uhp.ac.ma" required />
+
+        <label class="label">Mot de passe</label>
+        <input id="password" class="input" type="password" placeholder="••••••••" required />
+
+        <button class="btn-primary" type="submit">Se connecter</button>
+        
+        <p class="auth-switch">
+          Pas encore de compte ? <a href="#" id="btn-show-register">Créer un compte</a>
+        </p>
+      </form>
+
+      <form id="register-form" class="auth-form hidden">
+        
+        <label class="label">Nom complet</label>
+        <input id="reg-name" class="input" type="text" placeholder="Nom Complet" required />
+
+        <label class="label">Email étudiant</label>
+        <input id="reg-email" class="input" type="email" placeholder="nom.ensa@uhp.ac.ma" required />
+
+        <label class="label">Mot de passe</label>
+        <input id="reg-password" class="input" type="password" placeholder="Crée ton mot de passe" required />
+
+        <label class="label">Confirmer le mot de passe</label>
+        <input id="reg-password-confirm" class="input" type="password" placeholder="Répète le mot de passe" required />
+
+        <button class="btn-primary" type="submit">S'inscrire</button>
+        
+        <p class="auth-switch">
+          Déjà inscrit ? <a href="#" id="btn-show-login">Se connecter</a>
+        </p>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="chat-screen" class="app hidden">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sb-header">
+        <div class="brand">
+          <div class="brand-badge">EN</div>
+          <div class="brand-meta">
+            <div class="brand-name">Student Bot</div>
+            
+          </div>
+        </div>
+
+        <button id="new-chat-btn" class="btn-ghost">+ Nouveau</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Importer un cours</div>
+        <form id="upload-form" class="upload">
+          <input id="file-input" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" />
+          <button class="btn-ghost" type="submit">Upload</button>
+        </form>
+        <div id="upload-status" class="status"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title-row">
+          <div class="card-title">Historique</div>
+          <div id="history-count" class="pill">0</div>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </div>
+
+      <div class="sb-footer">
+        <div class="user-row">
+          <div class="user-mail" id="header-email">Invité</div>
+          <div id="ws-pill" class="pill off">Déconnecté</div>
+        </div>
+        <button id="logout-btn" class="btn-danger">Déconnexion</button>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="topbar-title">Assistant pédagogique</div>
+          <div class="topbar-sub">Pose tes questions sur tes cours, TD, examens…</div>
+        </div>
+      </header>
+
+      <section id="chat" class="chat">
+        <div id="chat-inner" class="chat-inner"></div>
+      </section>
+
+      <form id="chat-form" class="composer">
+        <div class="composer-inner">
+          <textarea id="msg-input" rows="1" placeholder="Message… (Entrée = envoyer, Shift+Entrée = ligne)"></textarea>
+          <button id="send-btn" class="btn-send" type="submit">Envoyer</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
